@@ -1,0 +1,53 @@
+Practical 1 - Data wrangling 1 
+
+import pandas as pd
+import numpy as np
+
+data = pd.read_csv("/home/username/Desktop/titanic.csv")
+print(data.head(5))
+
+
+print(data.info())
+print("Shape:", data.shape)
+
+
+print("Missing values:\n", data.isnull().sum())
+
+
+print(data.describe())
+
+
+print("Columns:", data.columns)
+
+
+print("Data types:\n", data.dtypes)
+
+
+data['Age'].fillna(data['Age'].mean())
+
+
+newsexx=[]
+for i in data['Sex']:
+    if i == 'male':
+        newsexx.append(0)
+    else:
+        newsexx.append(1)
+
+        
+data['neewsexx']=newsexx
+data[['Age','neewsexx']]
+
+
+print("Updated Data:\n", data.head(5))
+
+data
+
+
+data['Age'] = (data['Age'] - data['Age'].min()) / (data['Age'].max() - data['Age'].min())
+print(data['Age'])
+
+
+data['Survived'] = data['Survived'].astype('string')
+print(data['Survived'])
+
+
